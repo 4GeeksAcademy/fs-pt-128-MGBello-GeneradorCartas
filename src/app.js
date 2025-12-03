@@ -1,4 +1,4 @@
-const generateNewCard = (() => {
+const generateNewCard = () => {
   const stickValue = ['♥', '♦', '♠', '♣']
   const letterValue = ['A', 2, 3, 4, 5, 6, 7, 8, 9, 'J', 'Q', 'K']
   let automaticStick = Math.floor(Math.random() * stickValue.length)
@@ -24,18 +24,19 @@ const generateNewCard = (() => {
     }
   }
   width.addEventListener('input', () => {
-    card.style.width = width.value + 'px'
+    document.documentElement.style.setProperty('--card-width', width.value)
+
     visibility()
   })
   height.addEventListener('input', () => {
-    card.style.height = height.value + 'px'
+    document.documentElement.style.setProperty('--card-height', height.value)
     visibility()
   })
   above.innerHTML = `<span class="above-adjustement" style="color: ${color}">${stickValue[automaticStick]}</span>`
   below.innerHTML = `<span class="below-adjustement" style="color: ${color}">${stickValue[automaticStick]}</span>`
   number.innerHTML = `<p class="number-center" style="color: ${color}">${letterValue[automaticSelection]}</p>`
-})
-const width = document.querySelector('#width')
+}
+
 window.onload = generateNewCard
 
 const btn = document.getElementById("myBtn");
